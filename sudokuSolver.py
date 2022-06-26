@@ -24,9 +24,15 @@ unsolvedPuzzle = [
 #     for solutionNumber in finishedRow:
 #         if solutionNumber not in row:
 #             print(solutionNumber)
-
-for row in range(0,3):
-    print(unsolvedPuzzle[row][2])
+n = 0
+for row in unsolvedPuzzle:
+    for box in unsolvedPuzzle:
+    
+        n+=1 
+            
+            
+    
+print(n)
     
 
 """
