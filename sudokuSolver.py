@@ -20,8 +20,6 @@ unsolvedPuzzle = [
 # Box: for row in range(boxHeight):
 #    return unsolvedPuzzle[row][box]
 
-finishedRow = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-
 # for row in unsolvedPuzzle:
 #     for solutionNumber in finishedRow:
 #         if solutionNumber not in row:
@@ -50,3 +48,32 @@ As they check, remove any numbers not shared between the three checks
 7. Save it as an array object as solvedPuzzle
 """
 
+def solvePuzzle(puzzle):
+    finishedRow = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    solved = False
+    
+    while not solved:
+        possibleNumbers= []
+        temp = []
+        
+        # Go cell by cell,
+            # check row against finishedRow, append differences to possibleNumbers
+            # check column against finishedRow, append to temp 
+                # only store overlapped numbers (temp and possibleNumbers) in possibleNumbers
+                # clear temp
+            # check box against finishedRow, append to temp
+                # only store overlapped numbers (temp and possibleNumbers) in possibleNumbers
+                # clear temp
+                
+            # if len(possibleNumbers) == 1:
+                # change the value from 'X' to the number in possibleNumbers
+            # else
+                # continue
+                
+        # We need a way to see if the while loop has looped each cell without encountering an 'X'
+            # if it has (done the above)
+            # solved = True
+            # return solvedPuzzle 
+    
+        pass
+    
