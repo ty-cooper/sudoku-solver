@@ -77,21 +77,18 @@ def solvePuzzle(puzzle):
         if row <= 2:
             for iterateRow in range(3):
                 for boxNumber in unsolvedPuzzle[iterateRow][box]:
-                    print(boxNumber)
                     if boxNumber in possibleNumbers:
                         possibleNumbers.remove(boxNumber)
                     
         if row >= 3 and row <= 5:
             for iterateRow in range(3, 6):
                 for boxNumber in unsolvedPuzzle[iterateRow][box]:
-                    print(boxNumber)
                     if boxNumber in possibleNumbers:
                         possibleNumbers.remove(boxNumber)
                         
         if row >= 6:
             for iterateRow in range(6, 9):
                 for boxNumber in unsolvedPuzzle[iterateRow][box]:
-                    print(boxNumber)
                     if boxNumber in possibleNumbers:
                         possibleNumbers.remove(boxNumber)
                 
@@ -137,17 +134,17 @@ def solvePuzzle(puzzle):
                     print('**********')
                     print('**********\n')
                     
-                    # goOn = input("Next? ")
-                    # if goOn == 'y':
-                    #     solved = True
-                    #     return solved
+                    goOn = input("Next? ")
+                    if goOn == 'y':
+                        solved = True
+                        return solved
                     
                     if Xcounter == 82:
                         solved = True
                         return solved
 
-                    # else:
-                    #     continue
+                    else:
+                        continue
     
     while solved != True:
         # Go cell by cell,
