@@ -1,4 +1,5 @@
 from array import *
+from turtle import pos
 
 unsolvedPuzzle = [
     [["X", "X", "X"], ["X", 6, 2], ["X", 8, 3]],
@@ -56,8 +57,6 @@ def solvePuzzle(puzzle):
     def calculatePossibleNumbers(row, box, column):
         possibleNumbers = []
         rowNums = []
-        columnNums = []
-        boxNums = []
                 
         # check1 row possible, append to list
         for iterateBox in unsolvedPuzzle[row]:
@@ -70,28 +69,31 @@ def solvePuzzle(puzzle):
             
         # check2 column possible, append to list
         for iterateRow in range(0, len(unsolvedPuzzle)):
-            columnNums.append(unsolvedPuzzle[iterateRow][box][column])
-
-        missingNums = set(finishedRow).difference(set(columnNums))
-        for number in missingNums:
-            possibleNumbers.append(number)
+            number = unsolvedPuzzle[iterateRow][box][column]
+            if number in possibleNumbers:
+                possibleNumbers.remove(number)
             
         # check3 box possible, append to list
         for iterateRow in range(3):
             for number in unsolvedPuzzle[iterateRow][box]:
-                boxNums.append(number)
+                if number in possibleNumbers:
+                    possibleNumbers.remove(number)
                 
-        missingNums = set(finishedRow).difference(set(boxNums))
-        for number in missingNums:
-            possibleNumbers.append(number)
+        # Currently, we have every 'X' appending all possible solutions to each cell.
+        # Last step is to eliminate overlap.
+        # What determines whats allowed to stay in possibleNumbers?
             
         return possibleNumbers
     
     def iterateCell():
+        Xcounter = 0
+        position = 0
         
         for row in range(len(unsolvedPuzzle)):
             for box in range(3):
                 for column in range(3):
+                    position += 1
+                    print(f"Position: {position}")
                     currentCell = unsolvedPuzzle[row][box][column]
                     
                     if currentCell == 'X':
@@ -99,7 +101,12 @@ def solvePuzzle(puzzle):
                         possibleNumbers = calculatePossibleNumbers(row, box, column)
                         print(possibleNumbers)
                         if len(possibleNumbers) == 1:
-                            currentCell = possibleNumbers.pop()
+                            unsolvedPuzzle[row][box][column] = possibleNumbers.pop()
+                            print(f"X is now {unsolvedPuzzle[row][box][column]}")
+                        elif len(possibleNumbers) == 0:
+                            
+                            print("ERROR: Unsolvable")
+                            
                     else:
                         Xcounter += 1
                                         
@@ -107,20 +114,12 @@ def solvePuzzle(puzzle):
                     print(f"Row: {row}")
                     print(f"Column: {column}")
                     print(f"Box: {box}")
+                    print(f"Xcounter: {Xcounter}")
                     
-                    goNext = input("Next? ")
-                    
-                    if goNext == 'y':
-                        continue
-                    elif Xcounter == 82:
-                        solved = True
-                        return solved
-                    else:
+                    if Xcounter == 82:
                         solved = True
                         return solved
             
-        solved = True
-        return solved
     
     while solved != True:
         # Go cell by cell,
