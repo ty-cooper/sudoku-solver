@@ -1,5 +1,4 @@
 from array import *
-from re import U
 
 unsolvedPuzzle = [
     [["X", "X", "X"], ["X", 6, 2], ["X", 8, 3]],
@@ -62,12 +61,21 @@ def solvePuzzle(puzzle):
                 for column in range(3):
                     currentCell = unsolvedPuzzle[row][box][column]
                     
-                    # check row possible, append to list
+                    # if currentCell == 'X'
+                        # currentCell could be:
+                            # check possibleNumbers for:
+                             
+                                # check1 row possible, append to list
                     
-                    # check column possible, append to list
+                                # check2 column possible, append to list
                     
-                    # check box possible, append to list
+                                # check3 box possible, append to list
                     
+                                # decide: 
+                                    # if len(possibleNumbers) == 1:
+                                        # currentCell = possibleNumbers[0]
+                                        # continue
+                                        
                     print(currentCell)
                     print(f"Row: {row}")
                     print(f"Column: {column}")
@@ -89,26 +97,5 @@ def solvePuzzle(puzzle):
         
         # Go cell by cell,
         solved = iterateCell()             
-                    
-            # check row against finishedRow, append differences to possibleNumbers
-            # check column against finishedRow, append to temp 
-                # only store overlapped numbers (temp and possibleNumbers) in possibleNumbers
-                # clear temp
-            # check box against finishedRow, append to temp
-                # only store overlapped numbers (temp and possibleNumbers) in possibleNumbers
-                # clear temp
-                
-            # if len(possibleNumbers) == 1:
-                # change the value from 'X' to the number in possibleNumbers
-            # else
-                # continue
-                
-        # We need a way to see if the while loop has looped each cell without encountering an 'X'
-            # if it has (done the above)
-            # solved = True
-            # return solvedPuzzle 
-    
-     
-    
     
 solvePuzzle(unsolvedPuzzle)
