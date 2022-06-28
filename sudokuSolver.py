@@ -74,10 +74,26 @@ def solvePuzzle(puzzle):
                 possibleNumbers.remove(number)
             
         # check3 box possible, append to list
-        for iterateRow in range(3):
-            for number in unsolvedPuzzle[iterateRow][box]:
-                if number in possibleNumbers:
-                    possibleNumbers.remove(number)
+        if row <= 2:
+            for iterateRow in range(3):
+                for boxNumber in unsolvedPuzzle[iterateRow][box]:
+                    print(boxNumber)
+                    if boxNumber in possibleNumbers:
+                        possibleNumbers.remove(boxNumber)
+                    
+        if row >= 3 and row <= 5:
+            for iterateRow in range(3, 6):
+                for boxNumber in unsolvedPuzzle[iterateRow][box]:
+                    print(boxNumber)
+                    if boxNumber in possibleNumbers:
+                        possibleNumbers.remove(boxNumber)
+                        
+        if row >= 6:
+            for iterateRow in range(6, 9):
+                for boxNumber in unsolvedPuzzle[iterateRow][box]:
+                    print(boxNumber)
+                    if boxNumber in possibleNumbers:
+                        possibleNumbers.remove(boxNumber)
                 
         # Currently, we have every 'X' appending all possible solutions to each cell.
         # Last step is to eliminate overlap.
@@ -93,6 +109,8 @@ def solvePuzzle(puzzle):
             for box in range(3):
                 for column in range(3):
                     position += 1
+                    print('\n**********')
+                    print('**********')
                     print(f"Position: {position}")
                     currentCell = unsolvedPuzzle[row][box][column]
                     
@@ -110,16 +128,26 @@ def solvePuzzle(puzzle):
                     else:
                         Xcounter += 1
                                         
+                    
                     print(currentCell)
                     print(f"Row: {row}")
                     print(f"Column: {column}")
                     print(f"Box: {box}")
                     print(f"Xcounter: {Xcounter}")
+                    print('**********')
+                    print('**********\n')
+                    
+                    # goOn = input("Next? ")
+                    # if goOn == 'y':
+                    #     solved = True
+                    #     return solved
                     
                     if Xcounter == 82:
                         solved = True
                         return solved
-            
+
+                    # else:
+                    #     continue
     
     while solved != True:
         # Go cell by cell,
