@@ -60,8 +60,8 @@ def solvePuzzle(puzzle):
         boxNums = []
                 
         # check1 row possible, append to list
-        for box in unsolvedPuzzle[row]:
-            for number in box:
+        for iterateBox in unsolvedPuzzle[row]:
+            for number in iterateBox:
                 rowNums.append(number)
                 
         missingNums = set(finishedRow).difference(set(rowNums))
@@ -69,9 +69,22 @@ def solvePuzzle(puzzle):
             possibleNumbers.append(number)
             
         # check2 column possible, append to list
-    
+        for iterateRow in range(0, len(unsolvedPuzzle)):
+            columnNums.append(unsolvedPuzzle[iterateRow][box][column])
+
+        missingNums = set(finishedRow).difference(set(columnNums))
+        for number in missingNums:
+            possibleNumbers.append(number)
+            
         # check3 box possible, append to list
-    
+        for iterateRow in range(3):
+            for number in unsolvedPuzzle[iterateRow][box]:
+                boxNums.append(number)
+                
+        missingNums = set(finishedRow).difference(set(boxNums))
+        for number in missingNums:
+            possibleNumbers.append(number)
+            
         return possibleNumbers
     
     def iterateCell():
