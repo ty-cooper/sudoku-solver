@@ -53,28 +53,36 @@ def solvePuzzle(puzzle):
     solved = False
     unsolvedPuzzle = puzzle
     
-    def iterateCell():
+    def calculatePossibleNumbers():
         possibleNumbers = []
+            # check possibleNumbers for:
+                
+                # check1 row possible, append to list
+    
+                # check2 column possible, append to list
+    
+                # check3 box possible, append to list
+    
+                # decide: 
+                    # if len(possibleNumbers) == 1:
+                        # currentCell = possibleNumbers[0]
+                        # continue
+        return possibleNumbers
+    
+    def iterateCell():
         
         for row in range(len(unsolvedPuzzle)):
             for box in range(3):
                 for column in range(3):
                     currentCell = unsolvedPuzzle[row][box][column]
                     
-                    # if currentCell == 'X'
-                        # currentCell could be:
-                            # check possibleNumbers for:
-                             
-                                # check1 row possible, append to list
+                    if currentCell == 'X':
+                        Xcounter = 0
+                        possibleNumbers = calculatePossibleNumbers()
+                        if len(possibleNumbers) == 1:
+                            currentCell = possibleNumbers.pop()
                     
-                                # check2 column possible, append to list
-                    
-                                # check3 box possible, append to list
-                    
-                                # decide: 
-                                    # if len(possibleNumbers) == 1:
-                                        # currentCell = possibleNumbers[0]
-                                        # continue
+                    Xcounter += 1
                                         
                     print(currentCell)
                     print(f"Row: {row}")
@@ -82,8 +90,12 @@ def solvePuzzle(puzzle):
                     print(f"Box: {box}")
                     
                     goNext = input("Next? ")
+                    
                     if goNext == 'y':
                         continue
+                    elif Xcounter == 82:
+                        solved = True
+                        return solved
                     else:
                         solved = True
                         return solved
