@@ -53,20 +53,25 @@ def solvePuzzle(puzzle):
     solved = False
     unsolvedPuzzle = puzzle
     
-    def calculatePossibleNumbers():
+    def calculatePossibleNumbers(row, box, column):
         possibleNumbers = []
-            # check possibleNumbers for:
+        rowNums = []
+        columnNums = []
+        boxNums = []
                 
-                # check1 row possible, append to list
+        # check1 row possible, append to list
+        for box in unsolvedPuzzle[row]:
+            for number in box:
+                rowNums.append(number)
+                
+        missingNums = set(finishedRow).difference(set(rowNums))
+        for number in missingNums:
+            possibleNumbers.append(number)
+            
+        # check2 column possible, append to list
     
-                # check2 column possible, append to list
+        # check3 box possible, append to list
     
-                # check3 box possible, append to list
-    
-                # decide: 
-                    # if len(possibleNumbers) == 1:
-                        # currentCell = possibleNumbers[0]
-                        # continue
         return possibleNumbers
     
     def iterateCell():
@@ -78,11 +83,12 @@ def solvePuzzle(puzzle):
                     
                     if currentCell == 'X':
                         Xcounter = 0
-                        possibleNumbers = calculatePossibleNumbers()
+                        possibleNumbers = calculatePossibleNumbers(row, box, column)
+                        print(possibleNumbers)
                         if len(possibleNumbers) == 1:
                             currentCell = possibleNumbers.pop()
-                    
-                    Xcounter += 1
+                    else:
+                        Xcounter += 1
                                         
                     print(currentCell)
                     print(f"Row: {row}")
@@ -104,9 +110,6 @@ def solvePuzzle(puzzle):
         return solved
     
     while solved != True:
-        possibleNumbers= []
-        temp = []
-        
         # Go cell by cell,
         solved = iterateCell()             
     
