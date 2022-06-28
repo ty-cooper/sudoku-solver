@@ -1,4 +1,5 @@
 from array import *
+from re import U
 
 unsolvedPuzzle = [
     [["X", "X", "X"], ["X", 6, 2], ["X", 8, 3]],
@@ -24,15 +25,9 @@ unsolvedPuzzle = [
 #     for solutionNumber in finishedRow:
 #         if solutionNumber not in row:
 #             print(solutionNumber)
-n = 0
-for row in unsolvedPuzzle:
-    for box in unsolvedPuzzle:
-    
-        n+=1 
-            
-            
-    
-print(n)
+
+
+# print(unsolvedPuzzle[0][1][2])
     
 
 """
@@ -57,12 +52,44 @@ As they check, remove any numbers not shared between the three checks
 def solvePuzzle(puzzle):
     finishedRow = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     solved = False
+    unsolvedPuzzle = puzzle
     
-    while not solved:
+    def iterateCell():
+        possibleNumbers = []
+        
+        for row in range(len(unsolvedPuzzle)):
+            for box in range(3):
+                for column in range(3):
+                    currentCell = unsolvedPuzzle[row][box][column]
+                    
+                    # check row possible, append to list
+                    
+                    # check column possible, append to list
+                    
+                    # check box possible, append to list
+                    
+                    print(currentCell)
+                    print(f"Row: {row}")
+                    print(f"Column: {column}")
+                    print(f"Box: {box}")
+                    
+                    goNext = input("Next? ")
+                    if goNext == 'y':
+                        continue
+                    else:
+                        solved = True
+                        return solved
+            
+        solved = True
+        return solved
+    
+    while solved != True:
         possibleNumbers= []
         temp = []
         
         # Go cell by cell,
+        solved = iterateCell()             
+                    
             # check row against finishedRow, append differences to possibleNumbers
             # check column against finishedRow, append to temp 
                 # only store overlapped numbers (temp and possibleNumbers) in possibleNumbers
@@ -81,5 +108,7 @@ def solvePuzzle(puzzle):
             # solved = True
             # return solvedPuzzle 
     
-        pass
+     
     
+    
+solvePuzzle(unsolvedPuzzle)
