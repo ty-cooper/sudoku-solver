@@ -13,6 +13,9 @@ class Cell:
     
     def getValue(self):
         return self.value
+    
+    def setValue(self, val):
+        self.value = val
         
     def getPossibleNumbers(self):
         possibleNumbers = []

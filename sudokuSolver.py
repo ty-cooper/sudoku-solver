@@ -146,44 +146,44 @@ def solvePuzzle(puzzle):
     def calculatePossibleNumbers(row, box, column):
         possibleNumbers = []
         rowNums = []
-                
+        transfer = []
+        
         # check1 row possible, append to list
         for iterateBox in unsolvedPuzzle[row]:
             for number in iterateBox:
                 rowNums.append(number)
-        
-        for num in rowNums:
-            
-            print(num.getValue())
                 
-        missingNums = set(finishedRow).difference(set(rowNums))
+        for cell in rowNums:
+            transfer.append(cell.getValue())
+                
+        missingNums = set(finishedRow).difference(set(transfer))
         for number in missingNums:
             possibleNumbers.append(number)
             
         # check2 column possible, append to list
         for iterateRow in range(0, len(unsolvedPuzzle)):
             number = unsolvedPuzzle[iterateRow][box][column]
-            if number in possibleNumbers:
-                possibleNumbers.remove(number)
+            if number.getValue() in possibleNumbers:
+                possibleNumbers.remove(number.getValue())
             
         # check3 box possible, append to list
         if row <= 2:
             for iterateRow in range(3):
                 for boxNumber in unsolvedPuzzle[iterateRow][box]:
-                    if boxNumber in possibleNumbers:
-                        possibleNumbers.remove(boxNumber)
+                    if boxNumber.getValue() in possibleNumbers:
+                        possibleNumbers.remove(boxNumber.getValue())
                     
         if row >= 3 and row <= 5:
             for iterateRow in range(3, 6):
                 for boxNumber in unsolvedPuzzle[iterateRow][box]:
-                    if boxNumber in possibleNumbers:
-                        possibleNumbers.remove(boxNumber)
+                    if boxNumber.getValue() in possibleNumbers:
+                        possibleNumbers.remove(boxNumber.getValue())
                         
         if row >= 6:
             for iterateRow in range(6, 9):
                 for boxNumber in unsolvedPuzzle[iterateRow][box]:
-                    if boxNumber in possibleNumbers:
-                        possibleNumbers.remove(boxNumber)
+                    if boxNumber.getValue() in possibleNumbers:
+                        possibleNumbers.remove(boxNumber.getValue())
                 
         # Currently, we have every 'X' appending all possible solutions to each cell.
         # Last step is to eliminate overlap.
@@ -207,8 +207,8 @@ def solvePuzzle(puzzle):
                         possibleNumbers = calculatePossibleNumbers(row, box, column)
                         print(possibleNumbers)
                         if len(possibleNumbers) == 1:
-                            unsolvedPuzzle[row][box][column] = possibleNumbers.pop()
-                            print(f"X is now {unsolvedPuzzle[row][box][column]}")
+                            currentCell.setValue(possibleNumbers.pop())
+                            print(f"X is now {currentCell.getValue()}")
                         elif len(possibleNumbers) == 0:
                             print("ERROR: Unsolvable")
                             
@@ -217,6 +217,7 @@ def solvePuzzle(puzzle):
                                         
                     
                     print(currentCell)
+                    print(currentCell.getValue())
                     print(f"Row: {row}")
                     print(f"Column: {column}")
                     print(f"Box: {box}")
