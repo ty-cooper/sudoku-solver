@@ -8,91 +8,91 @@ C1 = Cell("C1")
 C2 = Cell("C2")
 C3 = Cell("C3")
 C4 = Cell("C4")
-C5 = Cell(6, "C5")
-C6 = Cell(2, "C6")
+C5 = Cell("C5", 6)
+C6 = Cell("C6", 2)
 C7 = Cell("C7")
-C8 = Cell(8, "C8")
-C9 = Cell(3, "C9")
+C8 = Cell("C8", 8)
+C9 = Cell("C9", 3)
 
-C10 = Cell(6, "C10")
+C10 = Cell("C10", 6)
 C11 = Cell("C11")
 C12 = Cell("C12")
-C13 = Cell(8, "C13")
+C13 = Cell("C13", 8)
 C14 = Cell("C14")
-C15 = Cell(9, "C15")
+C15 = Cell("C15", 9)
 C16 = Cell("C16")
 C17 = Cell("C17")
 C18 = Cell("C18")
 
 C19 = Cell("C19")
-C20 = Cell(1, "C20")
+C20 = Cell("C20", 1)
 C21 = Cell("C21")
 C22 = Cell("C22")
 C23 = Cell("C23")
 C24 = Cell("C24")
-C25 = Cell(9, "C25")
+C25 = Cell("C25", 9)
 C26 = Cell("C26")
 C27 = Cell("C27")
 
-C28 = Cell(8, "C28")
+C28 = Cell("C28", 8)
 C29 = Cell("C29")
 C30 = Cell("C30")
 C31 = Cell("C31")
-C32 = Cell(2, "C32")
+C32 = Cell("C32", 2)
 C33 = Cell("C33")
 C34 = Cell("C34")
 C35 = Cell("C35")
 C36 = Cell("C36")
 
-C37 = Cell(3, "C37")
-C38 = Cell(5, "C38")
+C37 = Cell("C37", 3)
+C38 = Cell("C38", 5)
 C39 = Cell("C39")
 C40 = Cell("C40")
 C41 = Cell("C41")
 C42 = Cell("C42")
-C43 = Cell(8, "C43")
+C43 = Cell("C43", 8)
 C44 = Cell("C44")
-C45 = Cell(4, "C45")
+C45 = Cell("C45", 4)
 
 C46 = Cell("C46")
-C47 = Cell(6, "C47")
+C47 = Cell("C47", 6)
 C48 = Cell("C48")
-C49 = Cell(5, "C49")
+C49 = Cell("C49", 5)
 C50 = Cell("C50")
 C51 = Cell("C51")
 C52 = Cell("C52")
-C53 = Cell(9, "C53")
-C54 = Cell(1, "C54")
+C53 = Cell("C53", 9)
+C54 = Cell("C54", 1)
 
-C55 = Cell(5, "C55")
+C55 = Cell("C55", 5)
 C56 = Cell("C56")
-C57 = Cell(6, "C57")
-C58 = Cell(4, "C58")
+C57 = Cell("C57", 6)
+C58 = Cell("C58", 4)
 C59 = Cell("C59")
-C60 = Cell(8, "C60")
-C61 = Cell(3, "C61")
-C62 = Cell(1, "C62")
-C63 = Cell(7, "C63")
+C60 = Cell("C60", 8)
+C61 = Cell("C61", 3)
+C62 = Cell("C62", 1)
+C63 = Cell("C63", 7)
 
-C64 = Cell(1, "C64")
+C64 = Cell("C64", 1)
 C65 = Cell("C65")
-C66 = Cell(4, "C66")
+C66 = Cell("C66", 4)
 C67 = Cell("C67")
-C68 = Cell(3, "C68")
+C68 = Cell("C68", 3)
 C69 = Cell("C69")
 C70 = Cell("C70")
 C71 = Cell("C71")
 C72 = Cell("C72")
 
-C73 = Cell(7, "C73")
+C73 = Cell("C73", 7)
 C74 = Cell("C74")
-C75 = Cell(9, "C75")
-C76 = Cell(2, "C76")
-C77 = Cell(1, "C77")
-C78 = Cell(5, "C78")
-C79 = Cell(6, "C79")
+C75 = Cell("C75", 9)
+C76 = Cell("C76", 2)
+C77 = Cell("C77", 1)
+C78 = Cell("C78", 5)
+C79 = Cell("C79", 6)
 C80 = Cell("C80")
-C81 = Cell(8, "C81")
+C81 = Cell("C81", 8)
 
 
 # unsolvedPuzzle = [
@@ -136,26 +136,7 @@ unsolvedPuzzle = [
 
 
 # print(unsolvedPuzzle[0][1][2])
-    
 
-"""
-1. How could we model sudoku in python?
-Using a 2D array.
-9x9
-
-2. Select a puzzle and model it in python
-
-3. Figure out how to check the row, column, and box for possible numbers
-
-4. Use the tests to check every row, column, and box for possible numbers
-As they check, remove any numbers not shared between the three checks
-
-5. Each iteration, replace X only when there is only one possible solution
-
-6. Iterate until X is not in unsolvedPuzzle
-
-7. Save it as an array object as solvedPuzzle
-"""
 
 def solvePuzzle(puzzle):
     finishedRow = [1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -170,6 +151,10 @@ def solvePuzzle(puzzle):
         for iterateBox in unsolvedPuzzle[row]:
             for number in iterateBox:
                 rowNums.append(number)
+        
+        for num in rowNums:
+            
+            print(num.getValue())
                 
         missingNums = set(finishedRow).difference(set(rowNums))
         for number in missingNums:
@@ -208,18 +193,16 @@ def solvePuzzle(puzzle):
     
     def iterateCell():
         Xcounter = 0
-        position = 0
         
         for row in range(len(unsolvedPuzzle)):
             for box in range(3):
                 for column in range(3):
-                    position += 1
                     print('\n**********')
                     print('**********')
-                    print(f"Position: {position}")
                     currentCell = unsolvedPuzzle[row][box][column]
-                    
-                    if currentCell == 'X':
+                    print(f"Position: {currentCell.getName()}")
+                
+                    if currentCell.getValue() == 'X':
                         Xcounter = 0
                         possibleNumbers = calculatePossibleNumbers(row, box, column)
                         print(possibleNumbers)
@@ -227,7 +210,6 @@ def solvePuzzle(puzzle):
                             unsolvedPuzzle[row][box][column] = possibleNumbers.pop()
                             print(f"X is now {unsolvedPuzzle[row][box][column]}")
                         elif len(possibleNumbers) == 0:
-                            
                             print("ERROR: Unsolvable")
                             
                     else:
@@ -255,7 +237,6 @@ def solvePuzzle(puzzle):
                         continue
     
     while solved != True:
-        # Go cell by cell,
         solved = iterateCell()             
     
 solvePuzzle(unsolvedPuzzle)
