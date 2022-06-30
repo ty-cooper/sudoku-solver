@@ -152,7 +152,7 @@ As they check, remove any numbers not shared between the three checks
 
 5. Each iteration, replace X only when there is only one possible solution
 
-6. Iterate until X is not in unsolvedPuzzle - edit
+6. Iterate until X is not in unsolvedPuzzle
 
 7. Save it as an array object as solvedPuzzle
 """
