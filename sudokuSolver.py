@@ -144,6 +144,23 @@ def solvePuzzle(puzzle):
     unsolvedPuzzle = puzzle
     
     def calculatePossibleNumbers(row, box, column):
+         # This could be refactored into checking the different possible solutions.
+        
+        """
+        While iterating:
+        
+        if 'X':
+            naked_single()
+            if naked_single:
+                continue
+            else:
+                hidden_single()
+                if hidden_single():
+                    continue
+                ...
+                    ...etc.
+        """
+
         possibleNumbers = []
         rowNums = []
         transfer = []
