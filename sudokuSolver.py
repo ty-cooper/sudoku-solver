@@ -207,8 +207,32 @@ def solvePuzzle(puzzle):
         # What determines whats allowed to stay in possibleNumbers?
         return possibleNumbers
     
-    def checkHiddenSingle(row, box, column):
+    # def checkHiddenSingle(row, box, column):
+    #     possibleNums = []
+    #     rowNums = []
+    #     transfer = []
         
+    #     columnNums = []
+    #     boxNums = []
+        
+    #     # Check row
+    #     for iterateBox in unsolvedPuzzle[row]:
+    #         for number in iterateBox:
+    #             rowNums.append(number)
+                
+    #     for cell in rowNums:
+    #         transfer.append(cell.getValue())
+            
+    #     missingNums = set(finishedRow).difference(set(transfer))
+    #     for number in missingNums:
+    #         possibleNums.append(number)
+            
+    #     for value in transfer:
+        
+        # compile a list of all the possible numbers of every cell around the current
+        # save these because we need to figure out how to save possibleNums to the cell object
+        # We will essentially be running possibleNumbers (above) on every iteration, saving the list
+        # Save the list of possible numbers to the possible number variable
 
     
     def iterateCell():
@@ -230,8 +254,11 @@ def solvePuzzle(puzzle):
                             currentCell.setValue(solution.pop())
                             print(f"X is now {currentCell.getValue()}")
                         elif len(solution) >= 2:
-                            solution = checkHiddenSingle(row, box, column)
-                            print("hidden single possibility")
+                            # this is how we can now check for hidden singles
+                            currentCell.setPossibleNumbers(solution)
+                            for number in currentCell.getPossibleNumbers():
+                                print(number)
+                                
                         elif len(solution) == 0:
                             print("ERROR: Unsolvable")
                             
@@ -248,15 +275,15 @@ def solvePuzzle(puzzle):
                     print('**********')
                     print('**********\n')
                     
+                    if Xcounter >= 82:
+                        solved = True
+                        print("Solved.")
+                        return solved
+                    
                     goOn = input("Next? ")
                     if goOn == 'y':
                         solved = True
                         return solved
-                    
-                    elif Xcounter >= 82:
-                        solved = True
-                        return solved
-
                     else:
                         continue
     

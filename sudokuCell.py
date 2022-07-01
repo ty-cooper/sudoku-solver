@@ -18,8 +18,10 @@ class Cell:
         self.value = val
         
     def getPossibleNumbers(self):
-        possibleNumbers = []
-        return possibleNumbers
+        return self.possibleNumbers
+    
+    def setPossibleNumbers(self, possibleNumbers):
+        self.possibleNumbers = possibleNumbers
     
     def getContext(self):
         self.rowNumbers = []
