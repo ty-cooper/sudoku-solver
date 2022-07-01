@@ -143,7 +143,7 @@ def solvePuzzle(puzzle):
     solved = False
     unsolvedPuzzle = puzzle
     
-    def calculatePossibleNumbers(row, box, column):
+    def checkNakedSingle(row, box, column):
          # This could be refactored into checking the different possible solutions.
         
         """
@@ -205,8 +205,11 @@ def solvePuzzle(puzzle):
         # Currently, we have every 'X' appending all possible solutions to each cell.
         # Last step is to eliminate overlap.
         # What determines whats allowed to stay in possibleNumbers?
-            
         return possibleNumbers
+    
+    def checkHiddenSingle(row, box, column):
+        
+
     
     def iterateCell():
         Xcounter = 0
@@ -221,12 +224,15 @@ def solvePuzzle(puzzle):
                 
                     if currentCell.getValue() == 'X':
                         Xcounter = 0
-                        possibleNumbers = calculatePossibleNumbers(row, box, column)
-                        print(possibleNumbers)
-                        if len(possibleNumbers) == 1:
-                            currentCell.setValue(possibleNumbers.pop())
+                        solution = checkNakedSingle(row, box, column)
+                        print(solution)
+                        if len(solution) == 1:
+                            currentCell.setValue(solution.pop())
                             print(f"X is now {currentCell.getValue()}")
-                        elif len(possibleNumbers) == 0:
+                        elif len(solution) >= 2:
+                            solution = checkHiddenSingle(row, box, column)
+                            print("hidden single possibility")
+                        elif len(solution) == 0:
                             print("ERROR: Unsolvable")
                             
                     else:
