@@ -1,4 +1,5 @@
 from array import *
+from cgi import test
 from sudokuCell import Cell
 
 ## ## ## ## ## CELL INITIALIZATION:
@@ -240,12 +241,10 @@ def solvePuzzle(puzzle):
         
         for testNum in possibleNumbers:
             if testNum.getValue() != 'X':
-                count[testNum.getValue()].append(testNum)
-
-        for countNum in count.items():
-            print(countNum.getName())
-            
-        return possibleNumbers
+                count[testNum.getValue()].append(testNum.getName())
+        
+        return count
+    
 
     
     def iterateCell():
@@ -271,7 +270,14 @@ def solvePuzzle(puzzle):
                             currentCell.setPossibleNumbers(solution)
                             
                             solution = checkHiddenSingle(row, box, column)
-                            print(solution)
+                            
+                            for listnums in solution.items():
+                                print(listnums[0], listnums[1])
+                                if len(listnums[1]) == 1:
+                                    temp = listnums[1][0] # This is the str of the class we need to re-assign
+                                    if currentCell.getName() == temp:
+                                        currentCell.value = listnums[0]
+                                        print(f"X is now {currentCell.getValue()}")
                                 
                         elif len(solution) == 0:
                             print("ERROR: Unsolvable")
