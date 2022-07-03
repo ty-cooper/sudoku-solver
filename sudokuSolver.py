@@ -1,9 +1,6 @@
 from array import *
 from sudokuCell import Cell
 
-# Initializing the cells
-# theres got to be a better way to do this
-
 C1 = Cell("C1")
 C2 = Cell("C2")
 C3 = Cell("C3")
@@ -137,7 +134,6 @@ unsolvedPuzzle = [
 
 # print(unsolvedPuzzle[0][1][2])
 
-
 def solvePuzzle(puzzle):
     finishedRow = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     solved = False
@@ -201,10 +197,52 @@ def solvePuzzle(puzzle):
                 for boxNumber in unsolvedPuzzle[iterateRow][box]:
                     if boxNumber.getValue() in possibleNumbers:
                         possibleNumbers.remove(boxNumber.getValue())
-                
-        # Currently, we have every 'X' appending all possible solutions to each cell.
-        # Last step is to eliminate overlap.
-        # What determines whats allowed to stay in possibleNumbers?
+                        
+        return possibleNumbers
+    
+    def checkHiddenSingle(row, box, column):
+        # Same as above, but instead of just using values- we fetch objects from values
+        # and compare their .getPossibleNumbers attribute.
+        
+        possibleNumbers = []
+        rowNums = []
+        columnNums = []
+        boxNums = []
+        
+        # check1 row possible, append to list
+        for iterateBox in unsolvedPuzzle[row]:
+            for number in iterateBox:
+                rowNums.append(number)
+            
+        # check2 column possible, append to list
+        for iterateRow in range(0, len(unsolvedPuzzle)):
+            number = unsolvedPuzzle[iterateRow][box][column]
+            columnNums.append(number)
+            
+        # check3 box possible, append to list
+        if row <= 2:
+            for iterateRow in range(3):
+                for boxNumber in unsolvedPuzzle[iterateRow][box]:
+                    boxNums.append(boxNumber)
+                    
+        if row >= 3 and row <= 5:
+            for iterateRow in range(3, 6):
+                for boxNumber in unsolvedPuzzle[iterateRow][box]:
+                    boxNums.append(boxNumber)
+                        
+        if row >= 6:
+            for iterateRow in range(6, 9):
+                for boxNumber in unsolvedPuzzle[iterateRow][box]:
+                    boxNums.append(boxNumber)
+                    
+        ###                    
+        
+        [possibleNumbers.append(f"Box: {cell}") for cell in boxNums]
+        [possibleNumbers.append(f"Row: {cell}") for cell in rowNums]
+        [possibleNumbers.append(f"Column: {cell}") for cell in columnNums]
+        
+        
+            
         return possibleNumbers
     
     # def checkHiddenSingle(row, box, column):
@@ -256,8 +294,9 @@ def solvePuzzle(puzzle):
                         elif len(solution) >= 2:
                             # this is how we can now check for hidden singles
                             currentCell.setPossibleNumbers(solution)
-                            for number in currentCell.getPossibleNumbers():
-                                print(number)
+                            
+                            solution = checkHiddenSingle(row, box, column)
+                            print(solution)
                                 
                         elif len(solution) == 0:
                             print("ERROR: Unsolvable")
@@ -291,3 +330,4 @@ def solvePuzzle(puzzle):
         solved = iterateCell()             
     
 solvePuzzle(unsolvedPuzzle)
+

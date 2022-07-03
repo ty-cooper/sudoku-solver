@@ -7,12 +7,18 @@ class Cell:
     def __init__(self, name, val='X'):
         self.name = name
         self.value = val
+        self.possibleNumbers = []
         
     def getName(self):
         return self.name
     
     def getValue(self):
         return self.value
+    
+    def findCell(self):
+        # If i plug in a name, I want to search cells and pull the relateed one.
+        # this would be higher than this
+        pass
     
     def setValue(self, val):
         self.value = val
