@@ -142,23 +142,6 @@ def solvePuzzle(puzzle):
     unsolvedPuzzle = puzzle
     
     def checkNakedSingle(row, box, column):
-         # This could be refactored into checking the different possible solutions.
-        
-        """
-        While iterating:
-        
-        if 'X':
-            naked_single()
-            if naked_single:
-                continue
-            else:
-                hidden_single()
-                if hidden_single():
-                    continue
-                ...
-                    ...etc.
-        """
-
         possibleNumbers = []
         rowNums = []
         transfer = []
@@ -239,9 +222,28 @@ def solvePuzzle(puzzle):
                     
         ###                 
         
-        [possibleNumbers.append(f"Box: {cell}") for cell in boxNums]
-        [possibleNumbers.append(f"Row: {cell}") for cell in rowNums]
-        [possibleNumbers.append(f"Column: {cell}") for cell in columnNums]
+        [possibleNumbers.append(cell) for cell in boxNums]
+        [possibleNumbers.append(cell) for cell in rowNums]
+        [possibleNumbers.append(cell) for cell in columnNums]
+        
+        count = {
+            1:[],
+            2:[],
+            3:[],
+            4:[],
+            5:[],
+            6:[],
+            7:[],
+            8:[],
+            9:[]
+        }
+        
+        for testNum in possibleNumbers:
+            if testNum.getValue() != 'X':
+                count[testNum.getValue()].append(testNum)
+
+        for countNum in count.items():
+            print(countNum.getName())
             
         return possibleNumbers
 
