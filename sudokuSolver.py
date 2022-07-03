@@ -1,6 +1,8 @@
 from array import *
 from sudokuCell import Cell
 
+## ## ## ## ## CELL INITIALIZATION:
+
 C1 = Cell("C1")
 C2 = Cell("C2")
 C3 = Cell("C3")
@@ -91,20 +93,10 @@ C79 = Cell("C79", 6)
 C80 = Cell("C80")
 C81 = Cell("C81", 8)
 
+## ## ## ## ##
 
-# unsolvedPuzzle = [
-#     [["X", "X", "X"], ["X", 6, 2], ["X", 8, 3]],
-#     [[6, "X", "X"], [8, "X", 9], ["X", "X", "X"]],
-#     [["X", 1, "X"], ["X", "X", "X"], [9, "X" ,"X"]],
-#     [[8, "X", "X"], ["X", 2, "X"], ["X", "X", "X"]],
-#     [[3, 5, "X"], ["X", "X", "X"], [8, "X", 4]],
-#     [["X", 6, "X"], [5, "X", "X"], ["X", 9, 1]],
-#     [[5, "X", 6], [4, "X", 8], [3, 1, 7]],
-#     [[1, "X", 4], ["X", 3, "X"], ["X", "X", "X"]],
-#     [[7, "X", 9], [2, 1, 5], [6, "X", 8]]
-# ]
 
-# Using cell objects instead.
+## ## ## ## ## BOARD:
 
 unsolvedPuzzle = [
     [[C1, C2, C3], [C4, C5, C6], [C7, C8, C9]],
@@ -117,6 +109,11 @@ unsolvedPuzzle = [
     [[C64, C65, C66], [C67, C68, C69], [C70, C71, C72]],
     [[C73, C74, C75], [C76, C77, C78], [C79, C80, C81]]
 ]
+
+## ## ## ## ##
+
+
+## ## ## ## ## KEY:
 
 # Row: unsolvedPuzzle[n]
 
@@ -133,6 +130,11 @@ unsolvedPuzzle = [
 
 
 # print(unsolvedPuzzle[0][1][2])
+
+## ## ## ## ##
+
+
+## ## ## ## ## SOLVE: 
 
 def solvePuzzle(puzzle):
     finishedRow = [1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -235,42 +237,13 @@ def solvePuzzle(puzzle):
                 for boxNumber in unsolvedPuzzle[iterateRow][box]:
                     boxNums.append(boxNumber)
                     
-        ###                    
+        ###                 
         
         [possibleNumbers.append(f"Box: {cell}") for cell in boxNums]
         [possibleNumbers.append(f"Row: {cell}") for cell in rowNums]
         [possibleNumbers.append(f"Column: {cell}") for cell in columnNums]
-        
-        
             
         return possibleNumbers
-    
-    # def checkHiddenSingle(row, box, column):
-    #     possibleNums = []
-    #     rowNums = []
-    #     transfer = []
-        
-    #     columnNums = []
-    #     boxNums = []
-        
-    #     # Check row
-    #     for iterateBox in unsolvedPuzzle[row]:
-    #         for number in iterateBox:
-    #             rowNums.append(number)
-                
-    #     for cell in rowNums:
-    #         transfer.append(cell.getValue())
-            
-    #     missingNums = set(finishedRow).difference(set(transfer))
-    #     for number in missingNums:
-    #         possibleNums.append(number)
-            
-    #     for value in transfer:
-        
-        # compile a list of all the possible numbers of every cell around the current
-        # save these because we need to figure out how to save possibleNums to the cell object
-        # We will essentially be running possibleNumbers (above) on every iteration, saving the list
-        # Save the list of possible numbers to the possible number variable
 
     
     def iterateCell():
@@ -327,7 +300,10 @@ def solvePuzzle(puzzle):
                         continue
     
     while solved != True:
-        solved = iterateCell()             
+        solved = iterateCell()
+        
+## ## ## ## ##          
+    
     
 solvePuzzle(unsolvedPuzzle)
 
